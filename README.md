@@ -1,10 +1,17 @@
 # homebrew-whisky
 
-Homebrew tap for [frankea/Whisky](https://github.com/frankea/Whisky), an active community fork of the archived [whisky-app/whisky](https://github.com/whisky-app/whisky) Wine wrapper for macOS.
+[![Latest release](https://img.shields.io/github/v/release/frankea/Whisky?filter=app-v*&label=release)](https://github.com/frankea/Whisky/releases/latest)
+
+Homebrew tap for [frankea/Whisky](https://github.com/frankea/Whisky), the actively maintained fork of the archived [whisky-app/whisky](https://github.com/whisky-app/whisky) Wine wrapper for macOS.
 
 ## Why this tap exists
 
-`brew install --cask whisky` from the default cask repo installs the original `whisky-app/whisky` build, which was [archived in April 2025](https://github.com/whisky-app/whisky) and marked deprecated in homebrew-cask shortly after. Until the official cask is updated, this tap provides the active fork's signed and notarized builds.
+The original Whisky was [archived in April 2025](https://github.com/whisky-app/whisky), and its cask in homebrew-cask was deprecated as unmaintained shortly after — so `brew install --cask whisky` from the default cask repo still installs that frozen build. This tap ships the maintained fork's signed and notarized releases, so `brew upgrade` keeps tracking active development.
+
+## Requirements
+
+- macOS 15 (Sequoia) or later
+- Apple Silicon (arm64) — Intel Macs are not supported
 
 ## Install
 
@@ -28,18 +35,16 @@ brew uninstall --cask --zap whisky
 
 ## What's in the cask
 
-- Whisky.app signed and notarized for macOS Sequoia 15.0+ on Apple Silicon
+- Whisky.app, signed and notarized
 - Auto-updates via Sparkle from `https://frankea.github.io/Whisky/appcast.xml`
 - See the [main repo](https://github.com/frankea/Whisky) for the changelog, upstream issue audit, and issue tracking
 
 ## Migrating from the archived original
 
-The fork uses a different bundle identifier (`com.franke.Whisky`), so it does not see existing bottles from the archived app. Before installing:
+Whisky 3.1.0 added a built-in importer, so the old manual export/import dance is no longer needed.
 
-1. Quit the original Whisky.
-2. Export bottles you want to keep via the original app's **Bottle → Export** menu.
-3. `brew uninstall --cask whisky` removes the archived original.
-4. `brew install --cask frankea/whisky/whisky` installs this fork.
-5. Re-import bottles in the new app via **File → Import Bottle**.
+1. Install this fork (see [Install](#install)). If `brew` reports a conflict with an existing `whisky` cask, remove the original first: `brew uninstall --cask whisky`.
+2. Launch Whisky and choose **File → Migrate from the Original Whisky…**.
+3. Tick the bottles you want to bring over and import. They're referenced in place — your files aren't moved or copied, and the original app keeps working — so the import is non-destructive.
 
-If there are no bottles to keep, skip the export. The new app creates a fresh bottle on first launch.
+If no bottles from the original are found there's nothing to migrate; the app creates a fresh bottle on first launch.
