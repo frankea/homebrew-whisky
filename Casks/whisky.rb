@@ -1,6 +1,6 @@
 cask "whisky" do
-  version "3.8.0"
-  sha256 "71d8b65b0b82420c1ad5d991dd98af17aefabc5c8a862e77082d0fd82b1a870a"
+  version "3.9.0"
+  sha256 "f20292e9e1c02786716ccb74fea84276361631b2533594b48951dc92905956c8"
 
   url "https://github.com/frankea/Whisky/releases/download/app-v#{version}/Whisky-#{version}.dmg"
   name "Whisky"
